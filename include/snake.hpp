@@ -11,7 +11,7 @@ public:
 	
 	void paintEvent(QPaintEvent *event) override;
 	void drawBoard(QPainter *painter);
-	void drawGrid(QPainter *painter);
+	void drawBlock(QPainter *painter, int x, int y, QColor color);
 };
 
 bool init_game(GameData &game);

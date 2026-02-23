@@ -12,6 +12,6 @@ constexpr int BLOCK_OUTLINE = 1;
 constexpr int BOARD_OFFSET_X = 10;
 constexpr int BOARD_OFFSET_Y = 10;
 
-const QColor BOARD_COLOR = Qt::black;
-const QColor GRID_COLOR = Qt::gray;
+const QColor BACKGROUND_COLOR = QColor("#9DAD86");
+const QColor BOARD_COLOR = QColor("#8E9D77");
 #endif

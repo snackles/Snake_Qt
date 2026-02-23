@@ -8,24 +8,42 @@ void GameData::paintEvent(QPaintEvent *event) {
 	QPainter painter(this);
 
 	drawBoard(&painter);
-	drawGrid(&painter);
 }
 
 void GameData::drawBoard(QPainter *painter) {
-	painter-> setBrush(BOARD_COLOR);
-    painter->drawRect(BOARD_OFFSET_X, BOARD_OFFSET_Y, BLOCK_SIZE * BOARD_WIDTH, BLOCK_SIZE * BOARD_HEIGHT);
+	QRect boardRect(BOARD_OFFSET_X,
+					BOARD_OFFSET_Y,
+					BLOCK_SIZE * BOARD_WIDTH,
+					BLOCK_SIZE * BOARD_HEIGHT);
+	QColor wallColor = Qt::black;
+	painter->setPen(QPen(wallColor, 1));
+	painter-> setBrush(Qt::NoBrush);
+	painter->drawRect(boardRect);
+	
+	for (int x = 0; x < BOARD_WIDTH; ++x) {
+        for (int y = 0; y < BOARD_HEIGHT; ++y) {
+             drawBlock(painter, x, y, BOARD_COLOR);
+        }
+    }
 }
 
-void GameData::drawGrid(QPainter *painter) {
-	painter->setOpacity(0.3);
-	painter-> setBrush(GRID_COLOR);
-	// Vertical lines
-	for(int x = 0; x <= BOARD_WIDTH; ++x){
-		painter->drawLine(BOARD_OFFSET_X + x * BLOCK_SIZE, BOARD_OFFSET_Y, BOARD_OFFSET_X + x * BLOCK_SIZE,  BOARD_OFFSET_Y + BLOCK_SIZE * BOARD_HEIGHT);
-	}
+void GameData::drawBlock(QPainter *painter, int x, int y, QColor color) {
+	QRect blockRect(x * BLOCK_SIZE + BOARD_OFFSET_X,
+					y * BLOCK_SIZE + BOARD_OFFSET_Y,
+					BLOCK_SIZE,
+					BLOCK_SIZE);
+	QRect outlineRect = blockRect.adjusted(BLOCK_OUTLINE,
+										   BLOCK_OUTLINE,
+										   -BLOCK_OUTLINE,
+										   -BLOCK_OUTLINE);
+	painter->setPen(QPen(color, 1));
+	painter-> setBrush(Qt::NoBrush);
+	painter->drawRect(outlineRect);
 
-	// Horizontal lines
-	for(int y = 0; y <= BOARD_HEIGHT; ++y){
-		painter->drawLine(BOARD_OFFSET_X, BOARD_OFFSET_Y + y * BLOCK_SIZE, BOARD_OFFSET_X + BLOCK_SIZE * BOARD_WIDTH , BOARD_OFFSET_Y + y * BLOCK_SIZE);
-	}
+	QRect inlineRect = outlineRect.adjusted(BLOCK_OUTLINE * 3,
+											BLOCK_OUTLINE * 3,
+											-(BLOCK_OUTLINE * 3),
+											-(BLOCK_OUTLINE * 3));
+	painter->fillRect(inlineRect, color);
 }
+

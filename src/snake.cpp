@@ -11,7 +11,7 @@ bool init_game(GameData &game){
 	
     game.setAutoFillBackground(true);
     QPalette background_color = game.palette();
-    background_color.setColor(QPalette::Window, Qt::gray);
+    background_color.setColor(QPalette::Window, BACKGROUND_COLOR);
     game.setPalette(background_color);
 
 	return true;
