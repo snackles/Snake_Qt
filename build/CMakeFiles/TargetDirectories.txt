@@ -1,5 +1,0 @@
-/Users/alina/Documents/Программирование/Snake_Qt/build/CMakeFiles/Snake.dir
-/Users/alina/Documents/Программирование/Snake_Qt/build/CMakeFiles/edit_cache.dir
-/Users/alina/Documents/Программирование/Snake_Qt/build/CMakeFiles/rebuild_cache.dir
-/Users/alina/Documents/Программирование/Snake_Qt/build/CMakeFiles/Snake_autogen_timestamp_deps.dir
-/Users/alina/Documents/Программирование/Snake_Qt/build/CMakeFiles/Snake_autogen.dir

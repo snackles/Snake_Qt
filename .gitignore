@@ -1,4 +1,17 @@
 cmake-build-debug
+**/moc_*.cpp
+**/moc_*.h
+**/qrc_*.cpp
+**/ui_*.h
+*.qmlc
+*.jsc
+/build/
+/out/
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
 Snake
 .DS_Store
 ./*
