@@ -1,19 +1,48 @@
 #ifndef SNAKE_HPP
 #define SNAKE_HPP
 
+#include "constants.hpp"
 #include <QWidget>
 #include <QPainter>
+#include <QTimer>
+#include <QQueue>
 
 class GameData : public QWidget {
 	Q_OBJECT
-public:
-	QWidget window;
 	
+public:
+	GameData(QWidget *parent = nullptr);
+	~GameData();
+	
+protected:	
 	void paintEvent(QPaintEvent *event) override;
-	void drawBoard(QPainter *painter);
-	void drawBlock(QPainter *painter, int x, int y, QColor color);
-};
+	void keyPressEvent(QKeyEvent *) override;
+	
+private:
+	bool isGameOver;
+	bool isPaused;
+	int score;
 
-bool init_game(GameData &game);
+	QTimer *gameTimer;
+	QVector<QPoint> snake;
+	QPoint apple;
+	Direction direction;
+
+	void createWindow();
+	void initGame();
+	void pauseGame();
+	void gameOver();
+	void moveSnake();
+	void createApple();
+	void checkApple();
+	void checkCollision();
+	
+	void drawBoard(QPainter &painter);
+	void drawBlock(QPainter &painter, int x, int y, QColor color);
+	void drawApple(QPainter &painter);
+	void drawSnake(QPainter &painter);
+
+	QQueue<Direction> inputQueue;
+};
 
 #endif

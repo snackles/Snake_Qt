@@ -11,6 +11,7 @@ add_executable(${PROJECT_NAME}
 	src/main.cpp
 	src/snake.cpp
 	src/graphics.cpp
+	src/input.cpp
 	include/snake.hpp
 	include/constants.hpp)
 
