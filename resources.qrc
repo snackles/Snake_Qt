@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file>assets/DS-DIGI.TTF</file>
+		<file>assets/DS-DIGIB.TTF</file>		
+    </qresource>
+</RCC>

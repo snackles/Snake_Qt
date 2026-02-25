@@ -1,10 +1,8 @@
 #include "../include/constants.hpp"
 #include "../include/snake.hpp"
 
-#include <QKeyEvent>
-
 void GameData::keyPressEvent(QKeyEvent *event) {
-	Direction nextDirection;
+	Direction nextDirection = direction;
 	
     switch (event->key()) {
     case Qt::Key_W:
@@ -25,6 +23,9 @@ void GameData::keyPressEvent(QKeyEvent *event) {
     case Qt::Key_R:
         initGame();
         break;
+	default:
+		QWidget::keyPressEvent(event); // Передаем событие дальше, если это не наше
+		return;
     }
 
 	if (inputQueue.size() >= 3) {return;}

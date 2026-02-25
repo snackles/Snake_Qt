@@ -1,9 +1,6 @@
 #include "../include/constants.hpp"
 #include "../include/snake.hpp"
 
-#include <QPainter>
-#include <iostream>
-
 void GameData::createWindow() {
 	this->resize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	this->setWindowTitle("Snake_QT_OOP");
@@ -18,10 +15,14 @@ void GameData::paintEvent(QPaintEvent *event) {
 	Q_UNUSED(event);
 	
 	QPainter painter(this);
-
+	
 	drawBoard(painter);
 	drawApple(painter);
 	drawSnake(painter);
+	drawScore(painter);
+
+	if (isGameOver){drawGameOver(painter);}
+	if (isPaused){drawPause(painter);}
 }
 
 void GameData::drawBoard(QPainter &painter) {
@@ -75,4 +76,73 @@ void GameData::drawSnake(QPainter &painter) {
 
 	QPoint tail = snake.back();
 	drawBlock(painter, tail.x(), tail.y(), SNAKE_COLOR);
+}
+
+void GameData::drawScore(QPainter &painter) {
+	painter.setFont(titleFont);
+	painter.setPen(TEXT_COLOR);
+	painter.drawText((BOARD_WIDTH * BLOCK_SIZE) + (BOARD_OFFSET_X * 2),
+					 BOARD_OFFSET_Y + 35,
+					 "SCORE");
+
+	painter.setFont(textFont);
+	painter.drawText((BOARD_WIDTH * BLOCK_SIZE) + (BOARD_OFFSET_X * 2),
+					 BOARD_OFFSET_Y * 8,
+					 QString::number(score));
+}
+
+void GameData::drawGameOver(QPainter &painter) {
+	int x = (WINDOW_WIDTH - BANNER_WIGTH) / 2;
+	int y = (WINDOW_HEIGHT - BANNER_HEIGHT) / 2;
+	QRect banner(x, y, BANNER_WIGTH, BANNER_HEIGHT);
+
+	painter.setBrush(BACKGROUND_COLOR);
+	painter.setPen(WALL_COLOR);
+	painter.drawRect(banner);
+
+	int marginTop = 10; 
+    QRect textTitle = banner.adjusted(0, marginTop, 0, 0);
+	
+	painter.setFont(titleFont);
+	painter.setPen(GAME_OVER_COLOR);
+	painter.drawText(textTitle,
+					 Qt::AlignHCenter | Qt::AlignTop,
+					 "GAME OVER");
+
+	int marginBottom = 10; 
+    QRect textComment = banner.adjusted(0, 0, 0, -marginBottom);
+	
+	painter.setFont(textFont);
+	painter.setPen(TEXT_COLOR);
+	painter.drawText(textComment,
+					 Qt::AlignHCenter | Qt::AlignBottom,
+					 "Press R to restart");
+}
+
+void GameData::drawPause(QPainter &painter) {
+	int x = (WINDOW_WIDTH - BANNER_WIGTH) / 2;
+	int y = (WINDOW_HEIGHT - BANNER_HEIGHT) / 2;
+	QRect banner(x, y, BANNER_WIGTH, BANNER_HEIGHT);
+
+	painter.setBrush(BACKGROUND_COLOR);
+	painter.setPen(WALL_COLOR);
+	painter.drawRect(banner);
+
+	int marginTop = 10; 
+    QRect textTitle = banner.adjusted(0, marginTop, 0, 0);
+	
+	painter.setFont(titleFont);
+	painter.setPen(TEXT_COLOR);
+	painter.drawText(textTitle,
+					 Qt::AlignHCenter | Qt::AlignTop,
+					 "PAUSE");
+	
+	int marginBottom = 10; 
+    QRect textComment = banner.adjusted(0, 0, 0, -marginBottom);
+	
+	painter.setFont(textFont);
+	painter.setPen(TEXT_COLOR);
+	painter.drawText(textComment,
+					 Qt::AlignHCenter | Qt::AlignBottom,
+					 "Press P to resume");
 }

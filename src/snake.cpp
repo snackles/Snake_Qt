@@ -1,9 +1,10 @@
 #include "../include/constants.hpp"
 #include "../include/snake.hpp"
 
-#include <QWidget>
-#include <QPainter>
-#include <QRandomGenerator>
+void loadFontFamily() {
+	QFontDatabase::addApplicationFont(":/assets/DS-DIGI.TTF");
+	QFontDatabase::addApplicationFont(":/assets/DS-DIGIB.TTF");
+}
 
 GameData::GameData(QWidget *parent)
 	: QWidget(parent) {
@@ -33,6 +34,16 @@ void GameData::initGame(){
 	isPaused = false;
 	score = 0;
 
+	loadFontFamily();
+
+	titleFont.setFamily("DS-Digital");
+	titleFont.setBold(true);
+	titleFont.setPointSize(50);
+
+	textFont.setFamily("DS-Digital");
+	textFont.setWeight(QFont::Normal);
+	textFont.setPointSize(30);
+
 	gameTimer->start(DELAY);
 	createApple();
 }
@@ -44,6 +55,7 @@ void GameData::pauseGame() {
     } else {
         gameTimer->start(DELAY);
     }
+	update();
 }
 
 void GameData::gameOver() {

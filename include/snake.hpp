@@ -2,10 +2,6 @@
 #define SNAKE_HPP
 
 #include "constants.hpp"
-#include <QWidget>
-#include <QPainter>
-#include <QTimer>
-#include <QQueue>
 
 class GameData : public QWidget {
 	Q_OBJECT
@@ -27,6 +23,8 @@ private:
 	QVector<QPoint> snake;
 	QPoint apple;
 	Direction direction;
+	QFont titleFont;
+	QFont textFont;
 
 	void createWindow();
 	void initGame();
@@ -41,8 +39,13 @@ private:
 	void drawBlock(QPainter &painter, int x, int y, QColor color);
 	void drawApple(QPainter &painter);
 	void drawSnake(QPainter &painter);
+	void drawScore(QPainter &painter);
+	void drawGameOver(QPainter &painter);
+	void drawPause(QPainter &painter);
 
 	QQueue<Direction> inputQueue;
 };
+
+void loadFontFamily();
 
 #endif
