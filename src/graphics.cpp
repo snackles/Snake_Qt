@@ -89,6 +89,26 @@ void GameData::drawScore(QPainter &painter) {
 	painter.drawText((BOARD_WIDTH * BLOCK_SIZE) + (BOARD_OFFSET_X * 2),
 					 BOARD_OFFSET_Y * 8,
 					 QString::number(score));
+
+	painter.setFont(titleFont);
+	painter.drawText((BOARD_WIDTH * BLOCK_SIZE) + (BOARD_OFFSET_X * 2),
+					 BOARD_OFFSET_Y + 135,
+					 "APPLES");
+
+	painter.setFont(textFont);
+	painter.drawText((BOARD_WIDTH * BLOCK_SIZE) + (BOARD_OFFSET_X * 2),
+					 BOARD_OFFSET_Y + 170,
+					 QString::number(apples));
+
+	painter.setFont(titleFont);
+	painter.drawText((BOARD_WIDTH * BLOCK_SIZE) + (BOARD_OFFSET_X * 2),
+					 BOARD_OFFSET_Y + 235,
+					 "LEVEL");
+
+	painter.setFont(textFont);
+	painter.drawText((BOARD_WIDTH * BLOCK_SIZE) + (BOARD_OFFSET_X * 2),
+					 BOARD_OFFSET_Y + 275,
+					 QString::number(level));
 }
 
 void GameData::drawGameOver(QPainter &painter) {

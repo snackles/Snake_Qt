@@ -12,6 +12,7 @@
 #include <QApplication>
 #include <QKeyEvent>
 #include <QDebug>
+#include <QEvent>
 #include <iostream>
 
 constexpr int BOARD_WIDTH    = 30;
@@ -27,7 +28,9 @@ constexpr int BANNER_HEIGHT = 100;
 constexpr int BLOCK_SIZE     = 20;
 constexpr int BLOCK_OUTLINE = 1;
 
-constexpr int DELAY = 300;
+constexpr int START_DELAY = 300;
+constexpr int POINTS_PER_APPLE = 10;
+constexpr int APPLES_TO_LEVEL_UP = 10;
 
 const QColor BACKGROUND_COLOR = QColor("#9DAD86");
 const QColor BOARD_COLOR = QColor("#8E9D77");

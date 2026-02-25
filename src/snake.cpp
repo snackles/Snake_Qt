@@ -33,6 +33,8 @@ void GameData::initGame(){
 	isGameOver = false;
 	isPaused = false;
 	score = 0;
+	apples = 0;
+	level = 1;
 
 	loadFontFamily();
 
@@ -44,7 +46,7 @@ void GameData::initGame(){
 	textFont.setWeight(QFont::Normal);
 	textFont.setPointSize(30);
 
-	gameTimer->start(DELAY);
+	gameTimer->start(START_DELAY);
 	createApple();
 }
 
@@ -53,7 +55,7 @@ void GameData::pauseGame() {
     if (isPaused) {
         gameTimer->stop();
     } else {
-        gameTimer->start(DELAY);
+        gameTimer->start();
     }
 	update();
 }
@@ -106,11 +108,24 @@ void GameData::checkApple() {
 	QPoint head = snake.front();
 	
 	if(head == apple){
-		score++;
+		score += POINTS_PER_APPLE;
+		apples++;
 		createApple();
+		int newLevel = (score / (POINTS_PER_APPLE * APPLES_TO_LEVEL_UP)) + 1;
+
+		if (newLevel > level) {
+        level = newLevel;
+        updateSpeed();
+		}
 	}else{
 		snake.pop_back();
 	}
+}
+
+void GameData::updateSpeed() {
+	int newInterval = START_DELAY - (level * 20);
+	if (newInterval < 30) {newInterval = 30;}
+	gameTimer->setInterval(newInterval);
 }
 
 void GameData::checkCollision() {
@@ -128,3 +143,12 @@ void GameData::checkCollision() {
         }
     }
 }
+bool GameData::event(QEvent *event) {
+	if (event->type() == QEvent::WindowDeactivate) {
+        if (!isPaused && !isGameOver) {
+            pauseGame();
+        }
+    }
+    return QWidget::event(event);
+}
+

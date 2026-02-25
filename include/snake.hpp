@@ -13,11 +13,14 @@ public:
 protected:	
 	void paintEvent(QPaintEvent *event) override;
 	void keyPressEvent(QKeyEvent *) override;
+	bool event(QEvent *event) override;
 	
 private:
 	bool isGameOver;
 	bool isPaused;
 	int score;
+	int level;
+	int apples;
 
 	QTimer *gameTimer;
 	QVector<QPoint> snake;
@@ -34,6 +37,7 @@ private:
 	void createApple();
 	void checkApple();
 	void checkCollision();
+	void updateSpeed();
 	
 	void drawBoard(QPainter &painter);
 	void drawBlock(QPainter &painter, int x, int y, QColor color);
