@@ -5,14 +5,13 @@ Classic Snake written using Qt6 and OOP
 Need to install: CMake, Qt6
 
 # Navigation:
+W - Move up
 
 A - Move left
 
-D - Move right
-
 S - Move down
 
-W - Move up
+D - Move right
 
 P - Pause
 
