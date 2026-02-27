@@ -3,7 +3,8 @@
 
 void GameData::keyPressEvent(QKeyEvent *event) {
 	Direction nextDirection = direction;
-	
+
+	// Input handling
     switch (event->key()) {
     case Qt::Key_W:
         nextDirection = UP;
@@ -23,11 +24,14 @@ void GameData::keyPressEvent(QKeyEvent *event) {
     case Qt::Key_R:
         initGame();
         break;
+	case Qt::Key_Escape:
+		this->close();
 	default:
-		QWidget::keyPressEvent(event); // Передаем событие дальше, если это не наше
+		QWidget::keyPressEvent(event);
 		return;
     }
 
+	// Chek directtion
 	if (inputQueue.size() >= 3) {return;}
 
 	Direction lastInQueue = inputQueue.isEmpty() ? direction : inputQueue.last();

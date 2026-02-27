@@ -1,6 +1,7 @@
 #include "../include/constants.hpp"
 #include "../include/snake.hpp"
 
+// Creating and setup window
 void GameData::createWindow() {
 	this->resize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	this->setWindowTitle("Snake_QT_OOP");
@@ -11,6 +12,7 @@ void GameData::createWindow() {
     this->setPalette(background_color);
 }
 
+// Rendering all objects
 void GameData::paintEvent(QPaintEvent *event) {
 	Q_UNUSED(event);
 	
@@ -25,6 +27,7 @@ void GameData::paintEvent(QPaintEvent *event) {
 	if (isPaused){drawPause(painter);}
 }
 
+// Grid drawing
 void GameData::drawBoard(QPainter &painter) {
 	QRect boardRect(BOARD_OFFSET_X,
 					BOARD_OFFSET_Y,
@@ -41,7 +44,9 @@ void GameData::drawBoard(QPainter &painter) {
     }
 }
 
+// Block drawing
 void GameData::drawBlock(QPainter &painter, int x, int y, QColor color) {
+	// First rectangle
 	QRect blockRect(x * BLOCK_SIZE + BOARD_OFFSET_X,
 					y * BLOCK_SIZE + BOARD_OFFSET_Y,
 					BLOCK_SIZE,
@@ -54,6 +59,7 @@ void GameData::drawBlock(QPainter &painter, int x, int y, QColor color) {
 	painter.setBrush(Qt::NoBrush);
 	painter.drawRect(outlineRect);
 
+	// Second rectangle
 	QRect inlineRect = outlineRect.adjusted(BLOCK_OUTLINE * 3,
 											BLOCK_OUTLINE * 3,
 											-(BLOCK_OUTLINE * 3),

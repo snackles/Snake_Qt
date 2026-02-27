@@ -10,12 +10,14 @@ public:
 	GameData(QWidget *parent = nullptr);
 	~GameData();
 	
-protected:	
+protected:
+	// Event handlers
 	void paintEvent(QPaintEvent *event) override;
 	void keyPressEvent(QKeyEvent *) override;
 	bool event(QEvent *event) override;
 	
 private:
+	// Game state
 	bool isGameOver;
 	bool isPaused;
 	int score;
@@ -28,7 +30,9 @@ private:
 	Direction direction;
 	QFont titleFont;
 	QFont textFont;
-
+	QQueue<Direction> inputQueue;
+	
+	// Game logic
 	void createWindow();
 	void initGame();
 	void pauseGame();
@@ -38,7 +42,8 @@ private:
 	void checkApple();
 	void checkCollision();
 	void updateSpeed();
-	
+
+	// Render
 	void drawBoard(QPainter &painter);
 	void drawBlock(QPainter &painter, int x, int y, QColor color);
 	void drawApple(QPainter &painter);
@@ -46,8 +51,6 @@ private:
 	void drawScore(QPainter &painter);
 	void drawGameOver(QPainter &painter);
 	void drawPause(QPainter &painter);
-
-	QQueue<Direction> inputQueue;
 };
 
 void loadFontFamily();
