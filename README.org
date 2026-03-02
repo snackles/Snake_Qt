@@ -5,7 +5,7 @@ Classic Snake game developed using *C++20* and *Qt6*. The project utilizes *OOP*
 *** Need to install:
 - CMake 4.2+ 
 - Qt 6.x 
-- C++20 compatible compiler (GCC/Clang/MSVC) 
+- C++20 compatible compiler (GCC / Clang / MSVC) 
 
 *** Build steps
 #+BEGIN_SRC bash
