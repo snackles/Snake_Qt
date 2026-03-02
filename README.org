@@ -1,5 +1,5 @@
 * Snake Qt
-Classic Snake game developed using *C++20* and *Qt6*. The project utilizes *OOP* style and cross-platform compatibility through **CMake**.
+Classic Snake game developed using *C++20* and *Qt6*. The project utilizes *OOP* style and cross-platform compatibility through *CMake*.
 
 ** Installation & build
 *** Need to install:
