@@ -1,0 +1,36 @@
+# Snake_Qt
+Classic Snake game developed using **C++20** and **Qt6**. The project utilizes **OOP** style and cross-platform compatibility through **CMake**.
+
+## Installation & build
+### Need to install:
+- CMake 4.2+
+- Qt 6.x
+- C++20 compatible compiler (GCC/Clang/MSVC)
+
+### Build steps
+```bash
+# Clone the repozitory
+git clone [https://github.com/snackles/Snake_Qt](https://github.com/snackles/Snake_Qt)
+cd Snake_Qt
+
+# Build
+cd build
+cmake ..
+cmake --build .
+```
+### Run
+Linux / MacOS:
+```bash
+./Snake
+```
+Windows:
+```bash
+Snake.exe
+```
+## Controls:
+Key | Action
+------------ | -------------
+W / A / S / D | Navigation (Up, Left, Down, Right)
+P | Pause / Resume
+R | Restart (anytime or after Game Over)
+ESC | Qiut
