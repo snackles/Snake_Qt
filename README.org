@@ -1,15 +1,18 @@
-# Snake_Qt
-Classic Snake game developed using **C++20** and **Qt6**. The project utilizes **OOP** style and cross-platform compatibility through **CMake**.
+#+TITLE: Snake_Qt6
+#+DESCRIPTION: Classic Snake game developed with C++20 and Qt6.
 
-## Installation & build
-### Need to install:
-- CMake 4.2+
-- Qt 6.x
-- C++20 compatible compiler (GCC/Clang/MSVC)
+* Snake Qt
+Classic Snake game developed using *C++20* and *Qt6*. The project utilizes *OOP* style and cross-platform compatibility through **CMake**.
 
-### Build steps
-```bash
-# Clone the repozitory
+** Installation & build
+*** Need to install:
+- CMake 4.2+ 
+- Qt 6.x 
+- C++20 compatible compiler (GCC/Clang/MSVC) 
+
+*** Build steps
+#+BEGIN_SRC bash
+# Clone the repozitory 
 git clone [https://github.com/snackles/Snake_Qt](https://github.com/snackles/Snake_Qt)
 cd Snake_Qt
 
@@ -17,20 +20,29 @@ cd Snake_Qt
 cd build
 cmake ..
 cmake --build .
-```
-### Run
+#+END_SRC
+
+*** Run
 Linux / MacOS:
-```bash
+#+BEGIN_SRC bash
 ./Snake
-```
+#+END_SRC
 Windows:
-```bash
+#+BEGIN_SRC bash
 Snake.exe
-```
-## Controls:
-Key | Action
------------- | -------------
-W / A / S / D | Navigation (Up, Left, Down, Right)
-P | Pause / Resume
-R | Restart (anytime or after Game Over)
-ESC | Qiut
+#+END_SRC
+
+** Controls:
+| Key             | Action                               |
+|-----------------+--------------------------------------|
+| *W / A / S / D* | Move (Up, Left, Down, Right)         |
+| *P*             | Pause / Resume                       |
+| *R*             | Restart (anytime or after Game Over) |
+| *ESC*           | Quit game                            |
+
+** Project structure:
+- =src/= :: implementation files (.cpp)
+- =include/= :: header files (.hpp)
+- =assets/= :: game assets
+- =CMakeLists.txt= :: build configuration script
+- =resources.qrc= :: .qrc file
